@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Make Payment{% endblock %}
+{% block username %}{{f_name}}{% endblock %}
+
+{% block content %}
+<h1>New Transaction</h1><br>
+    <form method="POST" class="post-form">{% csrf_token %}
+        <table cellpadding="10"cellspacing="10">
+                                <tr>
+                                    {{ form.username_of_recipient.label_tag }}</tr><br>
+                                    <tr>{{ form.username_of_recipient }}</tr><br>
+
+                                <tr>
+                                    {{ form.amount.label_tag }}</tr><br>
+                                    <tr>{{ form.amount }}</tr><br>
+                                <tr>
+                                    {{ form.currency.label_tag }}</tr><br>
+                                    <tr>{{ form.currency }}</tr><br>
+
+
+                            </table>
+        <p class="bs-component">
+                            <center>
+                                <input class="btn btn-success btn-sm" type="submit" value="Make Payment" />
+                            </center>
+                        </p>
+
+
+
+    </form>
+
+
+{% endblock %}
