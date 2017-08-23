@@ -9,9 +9,13 @@
     <div class="row">
         <div class="jumbotron">
             <h1>Hello {{f_name}} {{l_name}},</h1>
-            <p>Account balance: {{bal}} {{curr}}</p>
+            <p><h3>Account balance: {{bal}} {{curr}}</h3></p>
+            <p><a href="{% url 'new_transaction'%}">Pay someone</a></p>
+            <p><a href="#">View recent transactions</a></p>
+            <p><a href="#">Open a fixed deposit account</a></p>
+
         </div>
     </div>
 </div>
-<p><a href="{% url 'new_transaction'%}">Make payment to someone</a></p>
+
 {% endblock %}

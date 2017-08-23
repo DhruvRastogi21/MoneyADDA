@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Make Payment{% endblock %}
 {% block username %}{{f_name}}{% endblock %}
-
+{% block pay %}class="active"{% endblock %}
 {% block content %}
+
+<div class="container">
+<div class="jumbotron">
 <h1>New Transaction</h1><br>
     <form method="POST" class="post-form">{% csrf_token %}
         <table cellpadding="10"cellspacing="10">
@@ -29,6 +32,8 @@
 
 
     </form>
+</div>
+</div>
 
 
 {% endblock %}
