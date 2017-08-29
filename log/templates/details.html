@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Details{% endblock %}
+{% block username %}{{f_name}}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <p>Username : {{username}}</p>
+        <p>First Name : {{f_name}}</p>
+        <p>Last Name : {{l_name}}</p>
+        <p>Date of birth : {{date_of_birth}}</p>
+        <p>Account balance : {{balance}} {{currency}}</p>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -5,12 +5,13 @@
 {% block content %}
 
 
+
 <div class="container">
     <div class="row">
         <div class="jumbotron">
             <h1>Hello {{f_name}} {{l_name}},</h1>
             <p><h3>Account balance: {{bal}} {{curr}}</h3></p>
-            <p><a href="{% url 'new_transaction'%}">Pay someone</a></p>
+            <p><a href="{% url 'new_transaction' %}">Pay someone</a></p>
             <p><a href="#">View recent transactions</a></p>
             <p><a href="#">Open a fixed deposit account</a></p>
 

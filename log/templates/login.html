@@ -1,126 +1,21 @@
 
 
+{% extends 'base.html' %}
 
-
-
-    <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy " rel="stylesheet" type="text/css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
-
-
-
-
-        <style type="text/css" media="screen">
-        body{
-    background-image: url('http://s1.picswalls.com/wallpapers/2015/12/12/beautiful-desktop-wallpapers_124415306_294.jpg');
-}
-
-.jumbotron{
-border-radius=0;}
-
-.navbar{
-    border-radius=0;
-}
-
-.navbar-brand{
-    font-family: 'Satisfy',cursive;
-}
-        </style>
-
-        <body>
-  <div class="wrapper">
-
-
-
-
-
-
-        <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>{% block title %}{% endblock %}</title>
-                <!-- Core CSS - Include with every page -->
-
-
-                </head>
-                <body>
-                    <nav class="navbar navbar-inverse">
-                        <div class="container-fluid">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-
-
-                                <a class="navbar-brand" href="{% url 'home' %}"><span class="glyphicon glyphicon-home"></span>   MoneyADDA</a>
-                            </div>
-
-
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{% block username %}{% endblock %}
-                                            <span class="caret"></span>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <a href="#">home</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">action#1</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">action#2</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="#">action#3</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="/logout">Logout</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-
-
-
-
-                    <!-- Core Scripts - Include with every page -->
-
-        {% block javascript %}
-        {% endblock %}
-
-
-
-            </body>
-
-
+{% block content %}
 
 
     {% if form.errors %}
 
-<div class="alert alert-danger">
+<div class="alert alert-danger" >
     <div class="pull-center">
 
-  <strong>Invalid username or password!</strong>
+        <p ><center>Invalid username or password!</center></p>
         </div>
 </div>
 
     {% elif user.is_authenticated %}
 
-<p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
 
 
 
@@ -152,11 +47,13 @@ border-radius=0;}
                         </p>
                         <p class="bs-component">
                             <center>
-                                <input class="btn btn-success btn-sm" type="submit" value="Log in" />
+
+                                <input style="border-radius: 10000px" class="btn btn-danger btn-sm" type="submit" value="Log in" />
                             </center>
                         </p>
                         <input type="hidden" name="next" value="{{ next }}" />
                     </form>
+                    <a href="{% url 'signup' %}"><p><center>Not a user yet? Sign up here</center></p></a>
                 </div>
             </div>
         </div>
@@ -165,20 +62,20 @@ border-radius=0;}
 
 
 
-      <div class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-      <p class="navbar-text pull-left">© 2017 - MoneyADDA Inc. All rights reserved
-      </p>
-    </div>
 
+{% endblock %}
 
-
+            {% block javascript %}
 
 <script>
 {% if not user.is_authenticated %}
+$("ul.nav.navbar-nav").css("display","none");
 $("ul.nav.navbar-nav.navbar-right").css("display","none");
+
 {% endif %}
 </script>
 
+          {% endblock %}
 
 
+</div>

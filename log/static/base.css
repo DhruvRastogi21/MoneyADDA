@@ -1,0 +1,17 @@
+
+        body{
+    background-image: url('background.jpg');
+}
+
+.jumbotron{
+    color: black;
+    background-color: white;
+}
+
+.navbar{
+    border-radius:0;
+}
+
+.navbar-brand{
+    font-family: 'Satisfy',cursive;
+}

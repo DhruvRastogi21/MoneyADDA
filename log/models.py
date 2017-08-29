@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from forex_python.converter import CurrencyRates
 import pycountry
+c=CurrencyRates()
 
 list_of_currencies=['IDR', 'BGN', 'ILS', 'GBP', 'DKK', 'CAD',
                     'MXN', 'HUF', 'RON', 'MYR', 'SEK', 'SGD',
@@ -21,13 +22,29 @@ CURRENCY_CHOICES=tuple(CURRENCY_CHOICES)
 
 
 class AccountHolder(models.Model):
-    user=models.OneToOneField(User)
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
     date_of_birth = models.DateField(null=True)
-    Acc_balance=models.DecimalField(default=5000,decimal_places=2,max_digits=20)
+    Acc_balance=models.DecimalField(default=0,decimal_places=2,max_digits=20)
     currency=models.CharField(max_length=100,choices=CURRENCY_CHOICES)
 
     def __str__(self):
         return self.user.username
+    def debit(self,amount,currency):
+        if currency == self.currency:
+            self.Acc_balance -= amount
+        else:
+            self.Acc_balance -= c.convert(currency, self.currency, amount)
+        self.save()
+    def credit(self,amount,currency):
+        if currency == self.currency:
+            self.Acc_balance += amount
+        else:
+            self.Acc_balance += c.convert(currency, self.currency, amount)
+        self.save()
+
+
+
+
 
 class Transaction(models.Model):
     debited_from=models.ForeignKey(User,related_name='giver')
